@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Client Onboarding: Connect Platform</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#5048e5",
+              "background-light": "#f6f6f8",
+              "background-dark": "#121121",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            boxShadow: {
+                'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                'glow': '0 0 20px rgba(80, 72, 229, 0.15)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .dark .glass-panel {
+            background: rgba(18, 17, 33, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+<!-- Navbar -->
+<header class="w-full h-16 flex items-center justify-between px-6 lg:px-10 border-b border-slate-200/60 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<h1 class="text-base font-bold tracking-tight">Connect Platform</h1>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">help</span>
+                Help Center
+            </button>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 bg-center bg-cover border border-white dark:border-slate-600 shadow-sm" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYwFSbGxjWcD8uhdluTYChf4RG2oKklyYH3XrmO-B4DZDDm6H6TP8TeJzPYcuEXLyIXAu618-xzJPE_3kb3Prfl6JW3zvMoDC9ck-Nb0qPBrcsj_zi-v52H64PBxmUm6Txv8l34U2nX1rmdAfyh2uK-FK5pfaSbcrPH4UDb1Eqq2N9qoQfAZStGs0mzIJ-i8rxNVAne1FcIDoneBDHdQG-OMUZ6JleNDoVfEhGh44RypXmSbGi4pYnG1g6Vv52bc0gGLC5aIAT1Z8");'></div>
+</div>
+</header>
+<!-- Main Content Wrapper -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-4 sm:px-6 relative">
+<!-- Abstract Background Decorative Elements -->
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse" style="animation-duration: 4s;"></div>
+<div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl -z-10"></div>
+<!-- Wizard Container -->
+<div class="glass-panel shadow-glass w-full max-w-[960px] rounded-2xl p-0 flex flex-col relative overflow-hidden transition-all duration-300">
+<!-- Progress Stepper Header -->
+<div class="bg-slate-50/50 dark:bg-white/5 border-b border-slate-100 dark:border-slate-800 px-8 py-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex flex-col gap-1">
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Step 1 of 3</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Connect Integration</h2>
+</div>
+<!-- Stepper Visual -->
+<div class="flex items-center gap-2 md:gap-4 text-sm font-medium">
+<div class="flex items-center gap-2 text-primary">
+<div class="flex items-center justify-center size-6 rounded-full bg-primary text-white text-xs font-bold ring-4 ring-primary/10">1</div>
+<span>Connect</span>
+</div>
+<div class="h-px w-8 bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-600">
+<div class="flex items-center justify-center size-6 rounded-full border border-slate-200 dark:border-slate-700 bg-transparent text-xs">2</div>
+<span>Configure</span>
+</div>
+<div class="h-px w-8 bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-600">
+<div class="flex items-center justify-center size-6 rounded-full border border-slate-200 dark:border-slate-700 bg-transparent text-xs">3</div>
+<span>Sync</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-8 md:p-12 bg-white/60 dark:bg-transparent">
+<div class="flex flex-col gap-2 mb-8 text-center md:text-left">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Select Accounting Platform</h3>
+<p class="text-slate-500 dark:text-slate-400 text-base">Choose the source of truth for this client's financial data to begin the sync process.</p>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- QuickBooks Card -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="integration" type="radio" value="qbo"/>
+<div class="h-full relative flex flex-col p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg hover:border-primary/50 transition-all duration-200 hover:-translate-y-1 peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary/20 peer-checked:shadow-glow">
+<!-- Selected Badge -->
+<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary">
+<span class="material-symbols-outlined filled">check_circle</span>
+</div>
+<div class="size-14 mb-5 rounded-lg bg-[#2ca01c]/10 flex items-center justify-center p-2">
+<!-- QuickBooks Logo Placeholder -->
+<img alt="QuickBooks Logo" class="w-full h-full object-contain" data-alt="QuickBooks Online Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8DVe8p4m8vti6P6uVnxMAusmVV2rB175JbwMTIms1MPkD-bqDan-5xjzQvNkyKvVLImPQ2T24kIodoQhULAegPYrOPq-YLWGH2okM9tM1oDsD6c4u9_W7JksBIQxrkvxYNcTfGBRfvC23oyRrU5-WCj61DsKbaShtBqlhGsQp8sFKHGeVJZeDrU-nxjCJtFr7l4sBAGgCercVgRp_8BuiP928kYc6X7MTA9w9Ir2Xvoana-TmSAUoighwuE13gB00E_8jegk4AkE"/>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">QuickBooks Online</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+                                Industry standard for small businesses. Connects instantly with OAuth 2.0.
+                            </p>
+<div class="mt-auto flex items-center gap-2 text-xs font-medium text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 py-1.5 px-3 rounded-full w-fit">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                                Connect in 30s
+                            </div>
+</div>
+</label>
+<!-- Xero Card -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="integration" type="radio" value="xero"/>
+<div class="h-full relative flex flex-col p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg hover:border-primary/50 transition-all duration-200 hover:-translate-y-1 peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary/20 peer-checked:shadow-glow">
+<!-- Selected Badge -->
+<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary">
+<span class="material-symbols-outlined filled">check_circle</span>
+</div>
+<div class="size-14 mb-5 rounded-lg bg-[#0b3e5d]/10 flex items-center justify-center p-2">
+<!-- Xero Logo Placeholder -->
+<img alt="Xero Logo" class="w-full h-full object-contain" data-alt="Xero Accounting Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7p1SWpFlxyWmza9EsTeyajB21GZ82ZjXktazBxtvP4FbOeC1IBW3Ptljkzhk2POIuHG2uNXoP4MhEXacpaaogQY-sL6Nurvtv5Bai2EW8Gw1q4GXnK6zqWTbXiX4MvFjx2I_w2i_NNgStEd8Y9jaj7pRXbAaEiGZHPF_tc1m5_wlO1mTke5hTQneGQg8-mpl2PYqI-TpZyVeQscr3JkvD38S9tDaMiJSivCury0-I_cwRJ0DQ_9wjsaAVMR8W4oVaaHVgFYXcnGY"/>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Xero</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+                                Seamless API integration for all ledgers. Perfect for cloud-first firms.
+                            </p>
+<div class="mt-auto flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-100 dark:bg-slate-700 dark:text-slate-300 py-1.5 px-3 rounded-full w-fit">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                                Certified Partner
+                            </div>
+</div>
+</label>
+<!-- Manual Upload (Subtle Option) -->
+<label class="group relative cursor-pointer md:col-span-2 opacity-70 hover:opacity-100 transition-opacity">
+<input class="peer sr-only" name="integration" type="radio" value="manual"/>
+<div class="flex items-center gap-4 p-4 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors peer-checked:border-primary peer-checked:bg-primary/5">
+<div class="flex items-center justify-center size-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-semibold text-slate-900 dark:text-white">Import manually via CSV</h5>
+<p class="text-xs text-slate-500">For legacy systems or offline clients.</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 peer-checked:text-primary">chevron_right</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="bg-slate-50/80 dark:bg-slate-900/30 px-8 py-5 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center backdrop-blur-sm">
+<button class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white text-sm font-medium transition-colors">
+                    Cancel setup
+                </button>
+<div class="flex items-center gap-4">
+<p class="hidden sm:block text-xs text-slate-400 italic">Next: Configure chart of accounts</p>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2.5 px-6 rounded-lg shadow-lg shadow-primary/30 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                        Continue
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Branding -->
+<footer class="fixed bottom-4 w-full text-center pointer-events-none">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm pointer-events-auto">
+<span class="material-symbols-outlined text-xs text-slate-400">lock</span>
+<span class="text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Secured by 256-bit Encryption</span>
+</div>
+</footer>
+</body></html>

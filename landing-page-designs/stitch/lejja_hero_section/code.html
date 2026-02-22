@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lejja - The Future of Accounting</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06f906",
+                        "background-light": "#f5f8f5",
+                        "background-dark": "#0f230f", 
+                        "dark-base": "#121212",
+                        "dark-surface": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    boxShadow: {
+                        "neon": "0 0 10px rgba(6, 249, 6, 0.5), 0 0 20px rgba(6, 249, 6, 0.3)",
+                        "neon-hover": "0 0 15px rgba(6, 249, 6, 0.7), 0 0 30px rgba(6, 249, 6, 0.4)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(6, 249, 6, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(6, 249, 6, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-dark-base text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="w-full border-b border-white/10 bg-dark-base/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">Lejja</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Product</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Docs</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Pricing</a>
+</nav>
+<div class="flex items-center gap-6">
+<a class="hidden sm:block text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Sign In</a>
+<button class="bg-primary text-dark-base hover:bg-[#34fb34] hover:shadow-neon-hover shadow-neon transition-all duration-300 px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+<span>Join Waitlist</span>
+<span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="relative flex flex-col items-center justify-center pt-24 pb-32 px-4 overflow-hidden min-h-[85vh]">
+<!-- Background Grid Effect -->
+<div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+<!-- Radial Glow -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark-base pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 animate-fade-in-up">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-medium text-primary tracking-wide uppercase">v2.0 Now Available</span>
+</div>
+<!-- Headline -->
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[1.1]">
+                    The future of <br/> accounting is
+                    <span class="block mt-2 md:inline md:mt-0">
+<span class="inline-flex items-center justify-center align-middle mx-2 text-primary">
+<span class="material-symbols-outlined text-5xl md:text-7xl lg:text-8xl" style="font-variation-settings: 'FILL' 1;">person</span>
+</span>
+                        human
+                        <span class="text-slate-600 mx-2">+</span>
+<span class="inline-flex items-center justify-center align-middle mx-2 text-primary">
+<span class="material-symbols-outlined text-5xl md:text-7xl lg:text-8xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</span>
+                        AI
+                    </span>
+</h1>
+<!-- Subheadline -->
+<p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed mt-4">
+                    Stop drowning in spreadsheets. Lejja provides the <span class="text-slate-200 font-medium">API-first infrastructure</span> for modern finance teams to automate reconciliation and maintain control.
+                </p>
+<!-- CTA Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center">
+<button class="group relative bg-primary text-dark-base text-base font-bold px-8 py-4 rounded-lg shadow-neon hover:shadow-neon-hover transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden">
+<span class="relative z-10">Join The Community</span>
+<span class="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">rocket_launch</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+<button class="group px-8 py-4 rounded-lg border border-white/20 text-white hover:bg-white/5 hover:border-primary/50 transition-all duration-300 flex items-center justify-center gap-2 font-medium">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">code</span>
+<span>Read Documentation</span>
+</button>
+</div>
+<!-- Code Snippet Visual -->
+<div class="mt-20 w-full max-w-3xl rounded-xl bg-dark-surface border border-white/10 shadow-2xl overflow-hidden text-left relative group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="flex items-center px-4 py-3 border-b border-white/5 bg-[#151515] gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+<div class="ml-4 text-xs text-slate-500 font-mono">POST /v1/transactions/reconcile</div>
+</div>
+<div class="p-6 font-mono text-sm overflow-x-auto">
+<pre class="text-slate-300"><span class="text-purple-400">const</span> <span class="text-blue-400">reconcile</span> <span class="text-purple-400">=</span> <span class="text-purple-400">await</span> lejja.<span class="text-yellow-400">smartMatch</span>({
+  <span class="text-primary">source</span>: <span class="text-green-400">'stripe_connect'</span>,
+  <span class="text-primary">target</span>: <span class="text-green-400">'quickbooks_ledger'</span>,
+  <span class="text-primary">confidence_threshold</span>: <span class="text-orange-400">0.98</span>,
+  <span class="text-primary">auto_commit</span>: <span class="text-purple-400">true</span>
+});
+
+console.<span class="text-yellow-400">log</span>(reconcile.<span class="text-primary">status</span>); <span class="text-slate-500">// 'reconciled'</span>
+console.<span class="text-yellow-400">log</span>(reconcile.<span class="text-primary">audit_trail_id</span>); <span class="text-slate-500">// 'at_8f92k3...'</span></pre>
+</div>
+</div>
+<!-- Social Proof -->
+<div class="mt-16 pt-8 border-t border-white/5 w-full">
+<p class="text-sm text-slate-500 mb-6 uppercase tracking-widest font-semibold">Trusted by engineering teams at</p>
+<div class="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Logos represented as text for this strict component list, but styled to look like logos -->
+<span class="text-xl font-bold text-white flex items-center gap-2"><span class="material-symbols-outlined">hexagon</span> ACME Corp</span>
+<span class="text-xl font-bold text-white flex items-center gap-2"><span class="material-symbols-outlined">change_history</span> Vertex</span>
+<span class="text-xl font-bold text-white flex items-center gap-2"><span class="material-symbols-outlined">all_inclusive</span> Loop Infinite</span>
+<span class="text-xl font-bold text-white flex items-center gap-2"><span class="material-symbols-outlined">bolt</span> FlashTrade</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-20 px-4 bg-dark-base relative">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Developer-First Finance</h2>
+<p class="text-slate-400 max-w-lg">Built for engineering teams who need control, automation, and immutable logs.</p>
+</div>
+<a class="text-primary hover:text-white font-medium flex items-center gap-2 transition-colors group" href="#">
+                        View API Documentation 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="group p-8 rounded-xl border border-white/10 bg-[#181818] hover:border-primary/50 transition-colors duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">api</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">API Driven</h3>
+<p class="text-slate-400 leading-relaxed text-sm">Full programmatic access to your financial data. Build custom flows with our typed SDKs.</p>
+</div>
+<!-- Feature 2 -->
+<div class="group p-8 rounded-xl border border-white/10 bg-[#181818] hover:border-primary/50 transition-colors duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">sync</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Real-time Sync</h3>
+<p class="text-slate-400 leading-relaxed text-sm">Webhooks and events for instant reconciliation across Stripe, Plaid, and bank feeds.</p>
+</div>
+<!-- Feature 3 -->
+<div class="group p-8 rounded-xl border border-white/10 bg-[#181818] hover:border-primary/50 transition-colors duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">lock</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Immutable Ledger</h3>
+<p class="text-slate-400 leading-relaxed text-sm">Audit-proof logging for every transaction. Double-entry accounting logic baked in.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-dark-surface border-t border-white/10 py-12 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</div>
+<span class="text-slate-400 text-sm">© 2024 Lejja Inc.</span>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Documentation</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">API Status</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Twitter</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">GitHub</a>
+</div>
+</div>
+</footer>
+</body></html>

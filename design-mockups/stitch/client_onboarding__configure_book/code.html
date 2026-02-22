@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Client Onboarding: Configure Book</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1111d4",
+                        "primary-hover": "#0e0eb8",
+                        "primary-light": "#eef0ff",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a1a2e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(17, 17, 212, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #1111d4;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #1111d4;
+        }
+        
+        /* Custom scrollbar for multi-select if needed */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Top Navigation / Header -->
+<header class="w-full h-16 bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 flex items-center px-6 lg:px-12 sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<div class="bg-primary/10 p-1.5 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl">account_balance</span>
+</div>
+<span class="font-bold text-lg tracking-tight">LedgerSync</span>
+</div>
+<div class="ml-auto flex items-center gap-4">
+<button class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
+<img class="w-full h-full object-cover" data-alt="User avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFroB2YYJJM192uex3UUWRutN4Occyl6rncaBOLZ4XrrLolPGCIlsyU-taooKhtI7ph-deR-ToXdDMGBZLgV2DO9PW4BOrzLDsRL39BWOK0TNU3cy21R-Whd2mittW72P5uqdnpJcTCWavvNJbxxsfP80hfplpB4h8OuPfV6ASR8PvMUrKH74575P8JcaO_u-lLfY3FNDp-1lCZMxYJCXp3mYWYwqgzsa7rFSxs7FgZZydUiz-xOJ9JJ7b4gKkTA5UYINbne_VgdA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+<!-- Abstract background pattern -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none opacity-40">
+<div class="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-primary/5 blur-[100px]"></div>
+<div class="absolute top-[40%] -left-[10%] w-[500px] h-[500px] rounded-full bg-purple-500/5 blur-[100px]"></div>
+</div>
+<div class="w-full max-w-3xl flex flex-col gap-8">
+<!-- Page Header -->
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Client Onboarding</h1>
+<p class="text-slate-500 dark:text-slate-400">Complete the setup wizard to initialize the new entity.</p>
+</div>
+<!-- Progress Stepper -->
+<div class="w-full bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="relative flex items-center justify-between w-full max-w-lg mx-auto">
+<!-- Progress Line Background -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full -z-0"></div>
+<!-- Active Progress Line (50%) -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/2 h-1 bg-primary rounded-full -z-0 transition-all duration-500"></div>
+<!-- Step 1: Connect -->
+<div class="flex flex-col items-center gap-2 z-10">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-white dark:ring-surface-dark">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+<span class="text-xs font-medium text-primary">Connect</span>
+</div>
+<!-- Step 2: Configure (Active) -->
+<div class="flex flex-col items-center gap-2 z-10">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-white dark:ring-surface-dark shadow-glow">
+<span class="text-sm font-bold">2</span>
+</div>
+<span class="text-xs font-bold text-slate-900 dark:text-white">Configure</span>
+</div>
+<!-- Step 3: Review -->
+<div class="flex flex-col items-center gap-2 z-10">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 ring-4 ring-white dark:ring-surface-dark">
+<span class="text-sm font-bold">3</span>
+</div>
+<span class="text-xs font-medium text-slate-400 dark:text-slate-500">Review</span>
+</div>
+</div>
+</div>
+<!-- Main Form Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl shadow-soft border border-slate-200 dark:border-slate-800 overflow-hidden">
+<!-- Card Header -->
+<div class="px-8 pt-8 pb-6 border-b border-slate-100 dark:border-slate-800/50">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Configure Book</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Set up initial parameters and synchronization rules.</p>
+</div>
+<div class="hidden sm:flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-50 dark:bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            System Online
+                        </div>
+</div>
+</div>
+<!-- Form Content -->
+<div class="p-8 space-y-8">
+<!-- Core Details Section -->
+<div class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Client Legal Name -->
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="clientName">
+                                    Client Legal Name <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">corporate_fare</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-800/50 sm:text-sm transition-all shadow-sm" id="clientName" placeholder="e.g. Acme Corp Inc." type="text"/>
+</div>
+</div>
+<!-- Primary Contact Email -->
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">
+                                    Primary Contact Email <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-800/50 sm:text-sm transition-all shadow-sm" id="email" placeholder="billing@client.com" type="email"/>
+</div>
+</div>
+</div>
+<!-- Industry Verticals (Multi-select simulation) -->
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="industry">
+                                Industry Verticals
+                            </label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">domain</span>
+</div>
+<div class="min-h-[46px] flex flex-wrap items-center gap-2 pl-10 pr-10 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800/50 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all shadow-sm cursor-text" tabindex="0">
+<!-- Selected Tags -->
+<span class="inline-flex items-center px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                                        SaaS
+                                        <button class="ml-1 text-primary/60 hover:text-primary focus:outline-none">
+<span class="material-symbols-outlined text-[14px] font-bold">close</span>
+</button>
+</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                                        E-commerce
+                                        <button class="ml-1 text-primary/60 hover:text-primary focus:outline-none">
+<span class="material-symbols-outlined text-[14px] font-bold">close</span>
+</button>
+</span>
+<!-- Input for adding more -->
+<input class="flex-1 min-w-[120px] bg-transparent border-none p-1 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:ring-0" placeholder="Type to search..." type="text"/>
+</div>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">unfold_more</span>
+</div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 pl-1">Select all that apply to improve categorization accuracy.</p>
+</div>
+</div>
+<div class="h-px bg-slate-100 dark:bg-slate-800"></div>
+<!-- Sync Preferences Section -->
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">Sync Preferences</h3>
+</div>
+<div class="grid gap-4">
+<!-- Preference 1 -->
+<label class="flex items-start sm:items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-slate-50/50 dark:bg-slate-800/30 transition-colors cursor-pointer group">
+<div class="flex gap-3">
+<div class="mt-0.5 sm:mt-0 p-2 rounded-lg bg-white dark:bg-slate-800 text-indigo-500 shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-slate-900 dark:text-white">Automatic AI Categorization</span>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mt-0.5">Allow AI to suggest GL codes based on historical data.</span>
+</div>
+</div>
+<div class="relative inline-block w-11 h-6 align-middle select-none transition duration-200 ease-in ml-4">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer translate-x-0.5 translate-y-0.5 checked:translate-x-5 transition-transform duration-200 ease-in-out border-slate-300 checked:border-primary" name="toggle" type="checkbox"/>
+<div class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 dark:bg-slate-700 cursor-pointer peer-checked:bg-primary transition-colors duration-200"></div>
+</div>
+</label>
+<!-- Preference 2 -->
+<label class="flex items-start sm:items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-slate-50/50 dark:bg-slate-800/30 transition-colors cursor-pointer group">
+<div class="flex gap-3">
+<div class="mt-0.5 sm:mt-0 p-2 rounded-lg bg-white dark:bg-slate-800 text-orange-500 shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-slate-900 dark:text-white">Daily Anomaly Scanning</span>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mt-0.5">Flag transactions that deviate from standard patterns.</span>
+</div>
+</div>
+<div class="relative inline-block w-11 h-6 align-middle select-none transition duration-200 ease-in ml-4">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer translate-x-0.5 translate-y-0.5 checked:translate-x-5 transition-transform duration-200 ease-in-out border-slate-300 checked:border-primary" name="toggle" type="checkbox"/>
+<div class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 dark:bg-slate-700 cursor-pointer peer-checked:bg-primary transition-colors duration-200"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-8 py-5 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        Back
+                    </button>
+<button class="w-full sm:w-auto px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg text-sm font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all flex items-center justify-center gap-2 group transform active:scale-[0.98]">
+                        Start Initial Sync
+                        <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<p class="text-center text-xs text-slate-400 dark:text-slate-600 mt-2">
+                Step 2 of 3 • LedgerSync Secure Environment
+            </p>
+</div>
+</main>
+<script>
+        // Simple script to handle the toggle checkbox visual state if needed beyond CSS
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if(this.checked) {
+                    label.classList.add('bg-primary');
+                    label.classList.remove('bg-slate-200', 'dark:bg-slate-700');
+                } else {
+                    label.classList.remove('bg-primary');
+                    label.classList.add('bg-slate-200', 'dark:bg-slate-700');
+                }
+            });
+            // Init state
+            const label = toggle.nextElementSibling;
+             if(toggle.checked) {
+                label.classList.add('bg-primary');
+                label.classList.remove('bg-slate-200', 'dark:bg-slate-700');
+            }
+        });
+    </script>
+</body></html>

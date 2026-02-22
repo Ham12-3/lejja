@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Command Search Overlay</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1111d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        
+        .glass-panel {
+            background: rgba(16, 16, 34, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<!-- Background Decoration (Abstract mesh/gradient to show glass effect) -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/20 rounded-full blur-[100px]"></div>
+<div class="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-purple-900/20 rounded-full blur-[80px]"></div>
+</div>
+<!-- Overlay Container -->
+<div class="glass-panel w-full max-w-5xl h-[650px] border border-slate-700/50 rounded-xl flex flex-col relative z-10 overflow-hidden ring-1 ring-white/10">
+<!-- Search Header -->
+<div class="flex items-center px-6 py-5 border-b border-slate-700/50">
+<span class="material-symbols-outlined text-primary text-3xl mr-4">search</span>
+<input autofocus="" class="w-full bg-transparent border-none focus:ring-0 text-slate-100 placeholder-slate-500 text-xl font-medium p-0" placeholder="Search transactions, clients, or reports..." type="text"/>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded bg-slate-800 border border-slate-700 text-xs text-slate-400 font-medium">ESC</span>
+</div>
+</div>
+<!-- Main Content Area (Split View) -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Pane: Results List -->
+<div class="flex-1 overflow-y-auto p-4 border-r border-slate-700/50 flex flex-col gap-2">
+<!-- Category: Clients -->
+<div class="mb-4">
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3">Clients</h3>
+<ul class="space-y-1">
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center overflow-hidden ring-1 ring-white/10">
+<img alt="Acme Corp Avatar" class="w-full h-full object-cover" data-alt="Acme Corp company logo avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwNzqfvsWyrlfduN23VOv4tYmfDfm3bLaKPCQ3_I4geIkgl4Te41zA_KramrXWbZ4_9OHE1tyhYklS23LvIuVWLtSR10rvzr7OLTIvEyOUCi6GcoAA4aOPDodwmi1vrLA604k_p58E6tmnNypWDNENw630WtAfnZV2tjBpKr-EU8ZxlrUjBEjR_M2maseqzm85BcowCvS6Ro3fmF4WxiGozsB-98UwttogCNQP-vtFQqFMZzKBvC3TAuVX92AXzgmNE8svA9TUkEs"/>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-200 group-hover:text-white">Acme Corp</p>
+<p class="text-xs text-slate-500">Active • Last invoice 2d ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 text-[18px]">chevron_right</span>
+</li>
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center overflow-hidden ring-1 ring-white/10">
+<img alt="TechStart Inc Avatar" class="w-full h-full object-cover" data-alt="TechStart Inc company logo avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnJbqD6epLH71CnBZqnWrcPluvaZAIRWJpTpjz1uk4brURJySDPWySPlCkkGidP_vi3_UW63hkzjeOsM6lT-JKl6Um_6G-py3y-62xDDxC9GNm3dm1qWcfya-qFfI3WBYSB3Hu9hTzX0nU3Pz8hcAF9C4RksjxjaCoM_eLMbPoBiXMsJpgxNjEiA2Qa_QTXSNxzVR_Jy0fjs1qcsj6VKSpAT6h84cVnHCvN2ZyxomsabToZWqhdgiTtwU0L1o_IFL8jfaiioiTd14"/>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-200 group-hover:text-white">TechStart Inc</p>
+<p class="text-xs text-slate-500">Pending • Onboarding</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 text-[18px]">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- Category: Transactions -->
+<div class="mb-4">
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3">Transactions</h3>
+<ul class="space-y-1">
+<!-- Active Item Example -->
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer bg-primary/10 border-l-2 border-primary hover:bg-primary/20 transition-all">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 ring-1 ring-slate-700">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</div>
+<div>
+<p class="text-sm font-medium text-white">AWS Web Services</p>
+<p class="text-xs text-slate-400">Oct 24, 2023 • Software Subscription</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-white">$1,240.00</p>
+</div>
+</li>
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer hover:bg-slate-800/50 transition-colors border-l-2 border-transparent">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 ring-1 ring-slate-700">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-200 group-hover:text-white">Stripe Payout</p>
+<p class="text-xs text-slate-500">Oct 23, 2023 • Income</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-green-400">+$4,500.00</p>
+</div>
+</li>
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer hover:bg-slate-800/50 transition-colors border-l-2 border-transparent">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 ring-1 ring-slate-700">
+<span class="material-symbols-outlined text-[18px]">flight</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-200 group-hover:text-white">Delta Airlines</p>
+<p class="text-xs text-slate-500">Oct 21, 2023 • Travel</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-slate-300">$845.20</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Category: Reports -->
+<div class="mb-2">
+<h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3">Reports</h3>
+<ul class="space-y-1">
+<li class="group flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-indigo-900/30 flex items-center justify-center text-indigo-400 ring-1 ring-indigo-500/20">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-200 group-hover:text-white">Q3 P&amp;L Statement</p>
+<p class="text-xs text-slate-500">Generated Oct 01</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 text-[18px]">download</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Pane: Preview (Contextual Side-Pane) -->
+<div class="w-[380px] bg-slate-900/30 flex flex-col">
+<!-- Preview Header -->
+<div class="p-6 pb-4 border-b border-slate-700/50">
+<div class="flex items-start justify-between mb-4">
+<div class="bg-white p-2 rounded-lg">
+<img alt="AWS Logo" class="h-8 w-8 object-contain" data-alt="AWS company logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEKJ1VAfAPV-y8S3SyakrAw5q7owlE2R4AoVlWMdiiwLms5k0w8xZzgtX-Dp8dnQAALWNvxzhv3Ffwn-UodPxi4zD7CnwdCdG9ESe4kZs1h2G_Cac6Fa7TYLUV9XoFXdhFR-tfJYKJm0hQ4cUP4w10t6xOFF3m-ygVRLFntdC0ZL2f6MJwlvJw434pRHt53BrYWF-r3k-KHGRLa3CWJxuKXK4LuKe5-OZ6cta9TZbIGUnA4l0JFDqzmdUOtCj9_us1cx7V2bdRJpo"/>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-2xl font-bold text-white">$1,240.00</span>
+<span class="text-xs text-slate-400 font-mono">USD</span>
+</div>
+</div>
+<h2 class="text-lg font-semibold text-white">AWS Web Services</h2>
+<p class="text-sm text-slate-400">Oct 24, 2023 • 2:45 PM</p>
+</div>
+<!-- Preview Body -->
+<div class="p-6 flex-1 overflow-y-auto">
+<!-- AI Insight Card -->
+<div class="bg-slate-800/40 rounded-lg p-4 mb-6 ring-1 ring-white/5">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">auto_awesome</span>
+<span class="text-xs font-semibold text-primary uppercase tracking-wide">AI Categorization</span>
+</div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm text-slate-300">Category</span>
+<span class="text-sm font-medium text-white bg-slate-700 px-2 py-0.5 rounded">Software &amp; Subs</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-1.5 mb-2 overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-indigo-400 h-1.5 rounded-full" style="width: 98%"></div>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-400">Confidence Score</span>
+<span class="text-green-400 font-medium">98% High</span>
+</div>
+</div>
+<!-- Details List -->
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-slate-500 mb-1">Status</p>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<p class="text-sm text-slate-200">Cleared</p>
+</div>
+</div>
+<div>
+<p class="text-xs text-slate-500 mb-1">Account</p>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-400 text-[14px]">credit_card</span>
+<p class="text-sm text-slate-200">Visa •••• 4242</p>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-700/50">
+<p class="text-xs text-slate-500 mb-2">Attached Receipt</p>
+<div class="flex items-center gap-3 p-2 rounded bg-slate-800/50 hover:bg-slate-800 transition-colors cursor-pointer group">
+<div class="w-8 h-10 bg-slate-700 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-lg">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm text-slate-200 truncate group-hover:text-primary transition-colors">invoice_aws_oct24.pdf</p>
+<p class="text-xs text-slate-500">145 KB</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Preview Footer Actions -->
+<div class="p-4 border-t border-slate-700/50 bg-slate-900/50">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-medium py-2 rounded-lg transition-colors shadow-lg shadow-primary/20">
+<span>View Full Details</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<div class="flex justify-center mt-3 gap-4">
+<button class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit</span> Edit
+                        </button>
+<button class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">share</span> Share
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer: Keyboard Shortcuts -->
+<div class="px-6 py-3 border-t border-slate-700/50 bg-slate-900/80 flex items-center justify-between text-xs text-slate-400 select-none">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<span class="bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5 min-w-[20px] text-center font-mono">↵</span>
+<span>to select</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5 min-w-[20px] text-center font-mono">↑↓</span>
+<span>to navigate</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5 min-w-[20px] text-center font-mono">Esc</span>
+<span>to close</span>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-60">
+<span>Power Search</span>
+</div>
+</div>
+</div>
+</body></html>

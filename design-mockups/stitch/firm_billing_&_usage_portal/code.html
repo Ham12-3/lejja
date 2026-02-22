@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Firm Billing &amp; Usage Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1111d4",
+                        "primary-foreground": "#ffffff",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                        "slate-custom": {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0,0,0,0.03)',
+                        'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Main Layout -->
+<div class="flex-1 flex flex-col">
+<!-- Header / Breadcrumbs Area -->
+<header class="w-full px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="max-w-[1200px] mx-auto w-full">
+<nav class="flex items-center text-sm font-medium text-slate-500 mb-2">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="mx-2 text-slate-300">/</span>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-slate-900 dark:text-slate-100 font-semibold">Billing &amp; Usage</span>
+</nav>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Billing &amp; Usage</h1>
+<p class="text-slate-500 mt-1 dark:text-slate-400">Manage your firm's subscription, payment methods, and billing history.</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Subscription & History (Spans 2 columns) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Hero Subscription Card -->
+<section class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-soft p-6 group">
+<!-- Decorative subtle gradient -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700"></div>
+<div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+<div>
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary ring-1 ring-inset ring-primary/20 mb-2">
+                                Professional Plan
+                            </span>
+<h2 class="text-lg font-semibold text-slate-900 dark:text-white">Current Subscription</h2>
+</div>
+<button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-white hover:bg-primary/90 h-10 px-4 py-2 shadow-sm gap-2">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                            Manage in Stripe
+                        </button>
+</div>
+<div class="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Client Books</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">12</span>
+<span class="text-sm font-medium text-emerald-600 flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-0.5">trending_up</span>+2
+                                </span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Rate per Book</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">$25</span>
+<span class="text-sm text-slate-400">/ mo</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Est. Monthly Cost</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-primary dark:text-indigo-400">$300.00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Billing History Table -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-soft overflow-hidden">
+<div class="px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">Billing History</h3>
+<button class="text-sm text-primary hover:underline font-medium">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="text-xs text-slate-500 uppercase bg-slate-50 dark:bg-slate-800/50 dark:text-slate-400">
+<tr>
+<th class="px-6 py-3 font-medium" scope="col">Invoice ID</th>
+<th class="px-6 py-3 font-medium" scope="col">Date</th>
+<th class="px-6 py-3 font-medium" scope="col">Amount</th>
+<th class="px-6 py-3 font-medium" scope="col">Status</th>
+<th class="px-6 py-3 font-medium text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr class="bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#INV-2024-001</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">Oct 01, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">$300.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-600/20">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#INV-2023-012</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">Sep 01, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">$250.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-600/20">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#INV-2023-011</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400">Aug 01, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">$250.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-600/20">
+                                            Paid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Payment Method & Breakdown (Spans 1 column) -->
+<aside class="lg:col-span-1 space-y-8">
+<!-- Payment Method Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-soft p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white">Payment Method</h3>
+<button class="text-sm font-medium text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors">Change</button>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
+<div class="h-10 w-14 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0">
+<!-- Visa Icon Mockup -->
+<img alt="Visa Logo" class="h-3 w-auto object-contain" data-alt="Visa payment method logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBal-aIKsoo1FkJLTtvjOSIidhmXkXsjxF3VB6s3Yh-fwNUHC0DLXzSGd2iSW401p-2VE7Q_mRyt768r_CyQFcRNmovl1xnc0Tq1xc-gId5_tU2HEbEdqjonmp8Q1DhcPc_q0AvcQOfwRwaff19mZ6ucbDUGrCsjthRld9RxDYEJzw9AWP4rJ_TUVb68BKbDetX88JAPuh3zfpZKrBi9bKklKW2sjvJW7mi-mVsy5O3iExLQXCXhi9SolL3k2hRjzHoHsmDTBvLo5A"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Visa ending in 4242</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Expires 12/28</p>
+</div>
+<div class="text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px] mt-0.5">mail</span>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Billing Email</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">billing@acmefirm.com</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Cost Breakdown Widget -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-soft p-6">
+<h3 class="text-base font-semibold text-slate-900 dark:text-white mb-4">Monthly Breakdown</h3>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 dark:text-slate-400">Platform Base Fee</span>
+<span class="font-medium text-slate-900 dark:text-white">$0.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 dark:text-slate-400">Client Books (12 x $25)</span>
+<span class="font-medium text-slate-900 dark:text-white">$300.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 dark:text-slate-400">Discounts</span>
+<span class="font-medium text-emerald-600">-$0.00</span>
+</div>
+<!-- Divider -->
+<div class="h-px bg-slate-100 dark:bg-slate-800 my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Total Estimate</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">$300.00</span>
+</div>
+</div>
+<div class="mt-6 p-3 bg-primary/5 rounded-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span>
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Your next invoice will be processed on <span class="font-semibold text-slate-900 dark:text-white">Nov 1, 2023</span>. Usage is calculated daily.
+                        </p>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

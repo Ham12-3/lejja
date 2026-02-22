@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lejja High-Tech Pricing Comparison</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Fira+Code:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#06f906",
+                        "primary-dark": "#05c905",
+                        "background-dark": "#121212",
+                        "card-dark": "#1E1E1E",
+                        "accent-blue": "#3b82f6",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(6, 249, 6, 0.1), 0 0 20px rgba(6, 249, 6, 0.05)',
+                        'neon-strong': '0 0 15px rgba(6, 249, 6, 0.2), 0 0 30px rgba(6, 249, 6, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .text-mono {
+            font-family: 'Fira Code', monospace;
+        }
+        /* Custom scrollbar for high-tech feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06f906;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 antialiased overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-white/10 px-6 py-4 lg:px-12 bg-[#121212]/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Lejja</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-8">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Product</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Solutions</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Pricing</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Docs</a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 text-white hover:text-primary transition-colors text-sm font-bold border border-transparent hover:border-primary/30">
+                    Log In
+                </button>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary hover:bg-primary-dark text-black text-sm font-bold transition-all shadow-[0_0_10px_rgba(6,249,6,0.3)]">
+                    Get Started
+                </button>
+</div>
+</nav>
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex flex-col items-center justify-center py-20 px-4 md:px-8 w-full max-w-[1400px] mx-auto">
+<!-- Header Section -->
+<div class="text-center mb-16 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono mb-4">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                LIVE API STATUS: OPERATIONAL
+            </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-white">
+                Scalable <span class="text-primary">Intelligence</span>
+</h1>
+<p class="text-slate-400 text-lg font-light max-w-lg mx-auto">
+                Choose the compute power that fits your transaction volume. Transparent pricing for teams of all sizes.
+            </p>
+<!-- Toggle (Visual Only) -->
+<div class="mt-8 flex items-center justify-center gap-3">
+<span class="text-sm font-medium text-slate-300">Monthly</span>
+<button class="relative w-12 h-6 bg-slate-700 rounded-full flex items-center px-1 transition-colors hover:bg-slate-600">
+<span class="block w-4 h-4 bg-primary rounded-full shadow-md translate-x-6"></span>
+</button>
+<span class="text-sm font-medium text-slate-300">Annual <span class="text-primary text-xs ml-1 font-mono">-20%</span></span>
+</div>
+</div>
+<!-- Pricing Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full relative">
+<!-- Card 1: Starter -->
+<div class="group relative flex flex-col rounded-xl border border-white/5 bg-card-dark p-8 hover:border-primary/30 transition-all duration-300 hover:shadow-neon hover:-translate-y-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50"></div>
+<div class="mb-6">
+<h3 class="text-xl font-bold text-white mb-2">Starter</h3>
+<p class="text-slate-400 text-sm">Essential tools for individual developers.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold text-white">$0</span>
+<span class="text-slate-500 font-mono text-sm">/mo</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 mb-8">
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Core AI Bookkeeping</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>1 User Seat</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Basic Reporting</span>
+</div>
+<div class="border-t border-white/5 my-4 pt-4">
+<p class="text-xs font-mono text-slate-500 uppercase tracking-wider mb-3">Tech Specs</p>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400 mb-2">
+<span>API Rate Limit</span>
+<span class="text-white">10 RPM</span>
+</div>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400">
+<span>Data Retention</span>
+<span class="text-white">7 Days</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-white/5 text-white font-bold hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all text-sm">
+                    Start Building
+                </button>
+</div>
+<!-- Card 2: Professional (Highlighted) -->
+<div class="group relative flex flex-col rounded-xl border border-primary/40 bg-card-dark p-8 shadow-neon-strong z-10 scale-[1.02] lg:scale-105">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_10px_rgba(6,249,6,0.4)] tracking-wide uppercase">
+                    Most Popular
+                </div>
+<div class="mb-6">
+<h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        Professional
+                        <span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+</h3>
+<p class="text-slate-400 text-sm">Full power for growing teams.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-bold text-primary">$49</span>
+<span class="text-slate-500 font-mono text-sm">/mo</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 mb-8">
+<div class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Full GenAI Suite</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Natural Language Querying</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>5 User Seats</span>
+</div>
+<div class="border-t border-white/10 my-4 pt-4">
+<p class="text-xs font-mono text-primary/70 uppercase tracking-wider mb-3">Tech Specs</p>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400 mb-2">
+<span>API Rate Limit</span>
+<span class="text-primary font-bold">500 RPM</span>
+</div>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400 mb-2">
+<span>Context Window</span>
+<span class="text-white">1M Tokens</span>
+</div>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400">
+<span>Priority</span>
+<span class="text-white">P1 Queue</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark text-black font-bold transition-all shadow-[0_0_15px_rgba(6,249,6,0.3)] hover:shadow-[0_0_20px_rgba(6,249,6,0.5)] text-sm flex items-center justify-center gap-2">
+<span>Deploy Professional</span>
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</button>
+</div>
+<!-- Card 3: Enterprise -->
+<div class="group relative flex flex-col rounded-xl border border-white/5 bg-card-dark p-8 hover:border-accent-blue/40 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] hover:-translate-y-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-blue to-transparent opacity-50"></div>
+<div class="mb-6">
+<h3 class="text-xl font-bold text-white mb-2">Enterprise</h3>
+<p class="text-slate-400 text-sm">Custom solutions for large scale.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold text-white">Custom</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 mb-8">
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-accent-blue text-[20px]">verified_user</span>
+<span>Custom LLM Training</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-accent-blue text-[20px]">verified_user</span>
+<span>SSO Integration (SAML)</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-accent-blue text-[20px]">verified_user</span>
+<span>Dedicated Support Engineer</span>
+</div>
+<div class="border-t border-white/5 my-4 pt-4">
+<p class="text-xs font-mono text-slate-500 uppercase tracking-wider mb-3">Tech Specs</p>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400 mb-2">
+<span>API Access</span>
+<span class="text-accent-blue font-bold">Unlimited</span>
+</div>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400 mb-2">
+<span>Deployment</span>
+<span class="text-white">Private VPC</span>
+</div>
+<div class="flex justify-between items-center text-sm font-mono text-slate-400">
+<span>SLA</span>
+<span class="text-white">99.99% Uptime</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-accent-blue hover:bg-blue-600 text-white font-bold transition-all shadow-[0_0_10px_rgba(59,130,246,0.3)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-sm">
+                    Contact Sales
+                </button>
+</div>
+</div>
+<!-- Trust / Logos -->
+<div class="mt-20 w-full text-center">
+<p class="text-xs font-mono text-slate-600 mb-6 uppercase tracking-widest">Powering finance stacks at</p>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Mock Logos using text for simplicity but styled to look like logos -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">diamond</span>
+<span class="font-bold text-lg">Acme Corp</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">change_history</span>
+<span class="font-bold text-lg">Triangle Inc</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">hexagon</span>
+<span class="font-bold text-lg">HexaSystems</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">deployed_code</span>
+<span class="font-bold text-lg">CodeFlow</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-white/10 bg-[#0f0f0f] py-12 px-6">
+<div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-4">
+<div class="size-5 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h3 class="font-bold text-lg">Lejja</h3>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                    AI-powered accounting infrastructure for the modern internet economy.
+                </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Platform</h4>
+<ul class="space-y-2 text-sm text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Overview</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Integrations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Status</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Resources</h4>
+<ul class="space-y-2 text-sm text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">API Reference</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Company</h4>
+<ul class="space-y-2 text-sm text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">About</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Legal</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1400px] mx-auto border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-600 text-sm">© 2024 Lejja AI Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">code</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

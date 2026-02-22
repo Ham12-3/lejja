@@ -1,0 +1,232 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Organization ────────────────────────────────────────────────────────────
+
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  industry        String?
+  logoUrl         String?
+  codatCompanyId          String?  @unique
+  stripeCustomerId        String?  @unique
+  stripeSubscriptionId    String?  @unique
+  stripePriceId           String?
+
+  clientBooks ClientBook[]
+  users       User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@map("organizations")
+}
+
+// ─── ClientBook ──────────────────────────────────────────────────────────────
+
+model ClientBook {
+  id                String   @id @default(cuid())
+  name              String
+  fiscalYearEnd     DateTime
+  currency          String   @default("USD")
+  status            ClientBookStatus @default(ACTIVE)
+  codatConnectionId String?  @unique
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  transactions     Transaction[]
+  anomalyFlags     AnomalyFlag[]
+  taxDeductions    TaxDeduction[]
+  monthEndReports  MonthEndReport[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([organizationId])
+  @@map("client_books")
+}
+
+enum ClientBookStatus {
+  ACTIVE
+  ARCHIVED
+  UNDER_REVIEW
+}
+
+// ─── Transaction ─────────────────────────────────────────────────────────────
+
+model Transaction {
+  id          String   @id @default(cuid())
+  date        DateTime
+  description String
+  amount      Decimal  @db.Decimal(14, 2)
+  type        TransactionType
+  reference   String?
+
+  clientBookId String
+  clientBook   ClientBook @relation(fields: [clientBookId], references: [id], onDelete: Cascade)
+
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  anomalyFlags AnomalyFlag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([clientBookId])
+  @@index([categoryId])
+  @@index([date])
+  @@map("transactions")
+}
+
+enum TransactionType {
+  DEBIT
+  CREDIT
+}
+
+// ─── Category ────────────────────────────────────────────────────────────────
+
+model Category {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  description String?
+  color       String?
+
+  transactions Transaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@map("categories")
+}
+
+// ─── AnomalyFlag ─────────────────────────────────────────────────────────────
+
+model AnomalyFlag {
+  id          String       @id @default(cuid())
+  severity    AnomalySeverity
+  message     String
+  reasoning   String?
+  confidence  Float?
+  resolved    Boolean      @default(false)
+  resolvedAt  DateTime?
+  resolvedBy  String?
+
+  clientBookId String
+  clientBook   ClientBook @relation(fields: [clientBookId], references: [id], onDelete: Cascade)
+
+  transactionId String?
+  transaction   Transaction? @relation(fields: [transactionId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([clientBookId])
+  @@index([transactionId])
+  @@map("anomaly_flags")
+}
+
+enum AnomalySeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+// ─── TaxDeduction ────────────────────────────────────────────────────────────
+
+model TaxDeduction {
+  id            String  @id @default(cuid())
+  name          String
+  description   String?
+  amount        Decimal @db.Decimal(14, 2)
+  taxYear       Int
+  eligible      Boolean @default(true)
+
+  clientBookId String
+  clientBook   ClientBook @relation(fields: [clientBookId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([clientBookId])
+  @@map("tax_deductions")
+}
+
+// ─── MonthEndReport ─────────────────────────────────────────────────────────
+
+model MonthEndReport {
+  id        String       @id @default(cuid())
+  title     String
+  period    String       // e.g. "2025-01"
+  status    ReportStatus @default(DRAFT)
+  revenue   Decimal      @db.Decimal(14, 2)
+  expenses  Decimal      @db.Decimal(14, 2)
+  netIncome Decimal      @db.Decimal(14, 2)
+
+  clientBookId String
+  clientBook   ClientBook @relation(fields: [clientBookId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([clientBookId])
+  @@map("month_end_reports")
+}
+
+enum ReportStatus {
+  DRAFT
+  FINALIZED
+  ARCHIVED
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  role      UserRole @default(MEMBER)
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+
+  @@index([organizationId])
+  @@map("users")
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lejja Path Selection</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06f906",
+                        "primary-dark": "#05c905",
+                        "background-light": "#f5f8f5",
+                        "background-dark": "#0f230f",
+                        "card-dark": "#1E1E1E",
+                        "action-blue": "#3b82f6",
+                        "action-blue-hover": "#2563eb",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+<!-- Top Navigation -->
+<div class="w-full border-b border-[#214a21] bg-[#102310] dark:bg-background-dark sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">Lejja</h2>
+</div>
+<!-- Nav Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Platform</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Solutions</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Resources</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Pricing</a>
+</nav>
+<!-- CTA -->
+<div class="flex items-center">
+<button class="bg-primary hover:bg-primary-dark text-[#102310] transition-colors rounded-lg px-5 py-2 text-sm font-bold">
+                        Get Started
+                    </button>
+</div>
+</header>
+</div>
+</div>
+<!-- Main Content: Path Selection Section -->
+<main class="flex-grow flex flex-col items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-background-light dark:bg-background-dark relative overflow-hidden">
+<!-- Background Decor: Subtle Grid -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: linear-gradient(#06f906 1px, transparent 1px), linear-gradient(to right, #06f906 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Section Header -->
+<div class="text-center max-w-2xl mx-auto mb-16 relative z-10">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
+                Choose Your Path
+            </h1>
+<p class="text-lg text-slate-600 dark:text-slate-400">
+                Tailored AI workflows designed for every scale of accounting complexity.
+            </p>
+</div>
+<!-- Split Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full relative z-10">
+<!-- Card 1: For Accounting Firms -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 p-8 md:p-10 hover:border-primary/50 transition-all duration-300 shadow-xl overflow-hidden">
+<!-- Hover Glow Effect -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px] group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex items-start justify-between mb-8">
+<div class="p-3 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">domain</span>
+</div>
+<span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase text-primary bg-primary/10 rounded-full border border-primary/20">Enterprise</span>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">For Accounting Firms</h3>
+<p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        Scale operations and automate compliance for your entire roster. manage multiple teams, enforce firm-wide AI policies, and integrate with enterprise ERPs seamlessly.
+                    </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Multi-tenant architecture</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Team collaboration tools</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Advanced audit trails</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+<button class="w-full group/btn flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-[#102310] font-bold py-3 px-6 rounded-lg transition-all duration-200">
+<span>Enterprise Access</span>
+<span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-slate-500 mt-3">Requires business verification</p>
+</div>
+</div>
+<!-- Card 2: For Independent CPAs -->
+<div class="group relative flex flex-col h-full bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 p-8 md:p-10 hover:border-action-blue/50 transition-all duration-300 shadow-xl overflow-hidden">
+<!-- Hover Glow Effect -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-action-blue/10 rounded-full blur-[80px] group-hover:bg-action-blue/20 transition-all duration-500"></div>
+<div class="flex items-start justify-between mb-8">
+<div class="p-3 bg-action-blue/10 rounded-lg">
+<span class="material-symbols-outlined text-action-blue text-3xl">person_celebrate</span>
+</div>
+<span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase text-action-blue bg-action-blue/10 rounded-full border border-action-blue/20">Professional</span>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">For Independent CPAs</h3>
+<p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        Supercharge your productivity and reclaim your time. The perfect AI assistant for solo practitioners handling tax preparation, bookkeeping, and advisory.
+                    </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-action-blue text-lg">check_circle</span>
+<span>Instant document processing</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-action-blue text-lg">check_circle</span>
+<span>Client portal included</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-action-blue text-lg">check_circle</span>
+<span>Automated categorization</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+<button class="w-full group/btn flex items-center justify-center gap-2 bg-action-blue hover:bg-action-blue-hover text-white font-bold py-3 px-6 rounded-lg transition-all duration-200">
+<span>Start Solo</span>
+<span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-slate-500 mt-3">Free 14-day trial, no credit card</p>
+</div>
+</div>
+</div>
+<!-- Trust Indicators / Social Proof below grid -->
+<div class="mt-20 w-full max-w-6xl mx-auto border-t border-slate-200 dark:border-slate-800 pt-10">
+<p class="text-center text-sm font-medium text-slate-500 uppercase tracking-widest mb-8">Trusted by accounting leaders at</p>
+<div class="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Logos using text for simplicity in this demo context, would typically be SVGs -->
+<div class="text-xl font-bold text-slate-400">FINCORP</div>
+<div class="text-xl font-bold text-slate-400">ACCMATRIX</div>
+<div class="text-xl font-bold text-slate-400">LEDGER.AI</div>
+<div class="text-xl font-bold text-slate-400">TURBOAUDIT</div>
+</div>
+</div>
+</main>
+</body></html>

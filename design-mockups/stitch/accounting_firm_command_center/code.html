@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Accounting Firm Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b2bee",
+                        "primary-light": "#6a4df4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f111a", 
+                        "surface-dark": "#161925",
+                        "surface-border": "#272a38",
+                        "accent-green": "#0bda6c",
+                        "accent-orange": "#fa6938",
+                        "text-main": "#e2e8f0",
+                        "text-muted": "#94a3b8"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161925; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #272a38; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b2bee; 
+        }
+        .glass-card {
+            background: rgba(22, 25, 37, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-text-main h-screen overflow-hidden flex">
+<!-- Sidebar -->
+<aside class="w-64 h-full flex flex-col bg-surface-dark border-r border-surface-border flex-shrink-0 z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white">account_balance</span>
+</div>
+<div>
+<h1 class="text-white text-base font-bold leading-tight">Acme Accounting</h1>
+<p class="text-text-muted text-xs font-normal">Command Center</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 overflow-y-auto flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-white border-l-2 border-primary" href="#">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-sm font-medium">Client Books</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-sm font-medium">Global Search</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-accent-orange transition-colors">error</span>
+<span class="text-sm font-medium">Anomaly Alerts</span>
+</div>
+<span class="bg-accent-orange/20 text-accent-orange text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+</nav>
+<div class="p-4 border-t border-surface-border">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-surface-border/30 hover:bg-surface-border/50 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Profile picture of Sarah Jenkins, Senior Accountant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5SKYvNq_KSYBitoDhh7dZgQeal6gWWuFplQ71-w-97hVt2THo971BInOe4kyoc8jXGenYGHjq1ztGIwaKORTdjM5AmyLU45UyJ--5KPiKErj02XKONdylM_c2CLrl5FzngbWipuM521cfEpcYKffC66zWCVPOBQAnbk0Ds0bwetMJ-TnXU-Z0PqOsb5GKDUmgJxUaFI4P0wSONb56zpO5Qa4ZKZIWP8_5q6oCtvzCrR5OMLZgXXIdzUfG1yCssX9rHGnOdfI1-oM')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-white truncate">Sarah Jenkins</p>
+<p class="text-xs text-text-muted truncate">Senior Partner</p>
+</div>
+<span class="material-symbols-outlined text-text-muted text-lg">expand_more</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Header -->
+<header class="h-16 flex items-center justify-between px-8 border-b border-surface-border bg-background-dark/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-4 flex-1">
+<h2 class="text-lg font-semibold text-white">Overview</h2>
+<div class="h-6 w-px bg-surface-border mx-2"></div>
+<div class="relative w-96 max-w-lg group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[20px] group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border-none rounded-lg leading-5 bg-surface-border/30 text-white placeholder-text-muted focus:outline-none focus:bg-surface-border/50 focus:ring-1 focus:ring-primary sm:text-sm transition-all" placeholder="Search clients, transactions, or reports..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-xs text-text-muted border border-surface-border px-1.5 py-0.5 rounded bg-surface-dark">⌘K</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-accent-orange rounded-full border-2 border-background-dark"></span>
+</button>
+<button class="p-2 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 rounded-lg text-text-muted hover:text-white hover:bg-surface-border/50 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto p-8 relative">
+<!-- Background Decoration -->
+<div class="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 max-w-[1600px] mx-auto">
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Active Books -->
+<div class="glass-card rounded-xl p-5 hover:border-primary/30 transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">book</span>
+</div>
+<span class="flex items-center text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> +2%
+                            </span>
+</div>
+<div>
+<h3 class="text-text-muted text-sm font-medium mb-1">Active Books</h3>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">42</span>
+<span class="text-xs text-text-muted mb-1.5">clients total</span>
+</div>
+</div>
+<!-- Sparkline approximation -->
+<div class="h-1 w-full bg-surface-border mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[70%] rounded-full"></div>
+</div>
+</div>
+<!-- Critical Anomalies -->
+<div class="glass-card rounded-xl p-5 hover:border-accent-orange/30 transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-accent-orange/10 rounded-lg text-accent-orange group-hover:bg-accent-orange group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="flex items-center text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_down</span> -5%
+                            </span>
+</div>
+<div>
+<h3 class="text-text-muted text-sm font-medium mb-1">Critical Anomalies</h3>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">12</span>
+<span class="text-xs text-text-muted mb-1.5">needs review</span>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-border mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-accent-orange w-[25%] rounded-full"></div>
+</div>
+</div>
+<!-- AI Accuracy -->
+<div class="glass-card rounded-xl p-5 hover:border-blue-500/30 transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-blue-500/10 rounded-lg text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<span class="flex items-center text-xs font-medium text-text-muted bg-surface-border/50 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">remove</span> 0%
+                            </span>
+</div>
+<div>
+<h3 class="text-text-muted text-sm font-medium mb-1">AI Accuracy</h3>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">98.4%</span>
+<span class="text-xs text-text-muted mb-1.5">confidence</span>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-border mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 w-[98%] rounded-full"></div>
+</div>
+</div>
+<!-- Hours Saved -->
+<div class="glass-card rounded-xl p-5 hover:border-purple-500/30 transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-purple-500/10 rounded-lg text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<span class="flex items-center text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> +12%
+                            </span>
+</div>
+<div>
+<h3 class="text-text-muted text-sm font-medium mb-1">Hours Saved</h3>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">145h</span>
+<span class="text-xs text-text-muted mb-1.5">this month</span>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-border mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-purple-500 w-[65%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Client Books Grid -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white">Client Books</h3>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-text-muted bg-surface-border/30 rounded-lg hover:bg-surface-border/50 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-text-muted bg-surface-border/30 rounded-lg hover:bg-surface-border/50 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span> Sort
+                                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Client Card 1 -->
+<div class="glass-card p-5 rounded-xl flex flex-col gap-4 group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center">
+<div class="w-full h-full bg-indigo-600 rounded flex items-center justify-center text-white font-bold text-xs">TS</div>
+</div>
+<div>
+<h4 class="text-white font-semibold text-sm">TechStart Inc.</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-accent-green animate-pulse-subtle"></div>
+<span class="text-[10px] text-text-muted uppercase tracking-wide">QBO • Synced 2m ago</span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 py-2">
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Pending</p>
+<p class="text-lg font-bold text-white">45</p>
+</div>
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Anomalies</p>
+<p class="text-lg font-bold text-accent-orange">2</p>
+</div>
+</div>
+<button class="w-full mt-auto py-2.5 bg-primary hover:bg-primary-light text-white text-sm font-semibold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span>Review Queue</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Client Card 2 -->
+<div class="glass-card p-5 rounded-xl flex flex-col gap-4 group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center">
+<div class="w-full h-full bg-emerald-600 rounded flex items-center justify-center text-white font-bold text-xs">GR</div>
+</div>
+<div>
+<h4 class="text-white font-semibold text-sm">GreenRetail LLC</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-accent-green animate-pulse-subtle"></div>
+<span class="text-[10px] text-text-muted uppercase tracking-wide">Xero • Synced 5m ago</span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 py-2">
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Pending</p>
+<p class="text-lg font-bold text-white">128</p>
+</div>
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Anomalies</p>
+<p class="text-lg font-bold text-text-muted">0</p>
+</div>
+</div>
+<button class="w-full mt-auto py-2.5 bg-surface-border hover:bg-surface-border/80 text-white text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2">
+<span>View Ledger</span>
+</button>
+</div>
+<!-- Client Card 3 -->
+<div class="glass-card p-5 rounded-xl flex flex-col gap-4 group hover:-translate-y-1 transition-transform duration-300 border-accent-orange/30 shadow-[0_0_15px_-3px_rgba(250,105,56,0.1)]">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center">
+<div class="w-full h-full bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">AC</div>
+</div>
+<div>
+<h4 class="text-white font-semibold text-sm">Alpha Capital</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-accent-orange"></div>
+<span class="text-[10px] text-text-muted uppercase tracking-wide">Netsuite • Sync Error</span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 py-2">
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Pending</p>
+<p class="text-lg font-bold text-white">12</p>
+</div>
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Anomalies</p>
+<p class="text-lg font-bold text-accent-orange">5</p>
+</div>
+</div>
+<button class="w-full mt-auto py-2.5 bg-accent-orange/10 hover:bg-accent-orange/20 text-accent-orange border border-accent-orange/20 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Fix Connection</span>
+<span class="material-symbols-outlined text-[16px]">link_off</span>
+</button>
+</div>
+<!-- Client Card 4 -->
+<div class="glass-card p-5 rounded-xl flex flex-col gap-4 group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center">
+<div class="w-full h-full bg-pink-500 rounded flex items-center justify-center text-white font-bold text-xs">BL</div>
+</div>
+<div>
+<h4 class="text-white font-semibold text-sm">BrightLabs</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-accent-green animate-pulse-subtle"></div>
+<span class="text-[10px] text-text-muted uppercase tracking-wide">QBO • Synced 12m ago</span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 py-2">
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Pending</p>
+<p class="text-lg font-bold text-white">8</p>
+</div>
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Anomalies</p>
+<p class="text-lg font-bold text-text-muted">0</p>
+</div>
+</div>
+<button class="w-full mt-auto py-2.5 bg-primary hover:bg-primary-light text-white text-sm font-semibold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span>Review Queue</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Client Card 5 -->
+<div class="glass-card p-5 rounded-xl flex flex-col gap-4 group hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center">
+<div class="w-full h-full bg-slate-800 rounded flex items-center justify-center text-white font-bold text-xs">NX</div>
+</div>
+<div>
+<h4 class="text-white font-semibold text-sm">Nexus Flow</h4>
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-accent-green animate-pulse-subtle"></div>
+<span class="text-[10px] text-text-muted uppercase tracking-wide">Xero • Synced 1hr ago</span>
+</div>
+</div>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2 py-2">
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Pending</p>
+<p class="text-lg font-bold text-white">204</p>
+</div>
+<div class="bg-surface-border/30 p-2.5 rounded-lg border border-transparent group-hover:border-surface-border/50 transition-colors">
+<p class="text-[10px] text-text-muted uppercase font-medium mb-1">Anomalies</p>
+<p class="text-lg font-bold text-accent-orange">1</p>
+</div>
+</div>
+<button class="w-full mt-auto py-2.5 bg-primary hover:bg-primary-light text-white text-sm font-semibold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span>Review Queue</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Activity Feed -->
+<aside class="w-full lg:w-80 flex-shrink-0 flex flex-col gap-6">
+<!-- Feed Panel -->
+<div class="glass-card rounded-xl p-6 h-full min-h-[500px]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-md font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">history</span>
+                                    Activity Feed
+                                </h3>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<div class="relative space-y-6">
+<!-- Timeline Line -->
+<div class="absolute top-2 left-[15px] bottom-2 w-px bg-surface-border"></div>
+<!-- Item 1 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary ring-4 ring-background-dark"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main leading-snug">
+<span class="text-primary font-medium">AI</span> categorized 450 transactions for <span class="text-white font-medium">Alpha Corp</span>
+</p>
+<span class="text-[11px] text-text-muted">2 min ago</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-accent-orange ring-4 ring-background-dark"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main leading-snug">
+                                            Sync failed for <span class="text-white font-medium">Beta LLC</span>. Attempting reconnect.
+                                        </p>
+<span class="text-[11px] text-text-muted">15 min ago</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-accent-green ring-4 ring-background-dark"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main leading-snug">
+                                            New invoice batch imported from <span class="text-white font-medium">Stripe</span>.
+                                        </p>
+<span class="text-[11px] text-text-muted">45 min ago</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-surface-border ring-4 ring-background-dark"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main leading-snug">
+                                            Monthly report generated for <span class="text-white font-medium">TechStart Inc</span>.
+                                        </p>
+<span class="text-[11px] text-text-muted">2 hours ago</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary ring-4 ring-background-dark"></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main leading-snug">
+<span class="text-primary font-medium">AI</span> flagged 3 duplicate expenses.
+                                        </p>
+<span class="text-[11px] text-text-muted">4 hours ago</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-surface-border rounded-lg text-xs text-text-muted hover:text-white hover:bg-surface-border/20 transition-colors">
+                                View Full History
+                            </button>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</main>
+</body></html>

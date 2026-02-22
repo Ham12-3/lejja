@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Categorization Feedback Loop</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f111a", 
+                        "surface-dark": "#181b29",
+                        "surface-hover": "#22263a",
+                        "border-dark": "#2b2f42",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.625rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(75, 43, 238, 0.15)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom Scrollbar for the table container */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #181b29;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2b2f42;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b2bee;
+        }
+        
+        /* Glass effect utility */
+        .glass-panel {
+            background: rgba(24, 27, 41, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex-none h-16 border-b border-border-dark bg-surface-dark px-6 flex items-center justify-between z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-glow">
+<span class="material-symbols-outlined text-xl">auto_awesome_mosaic</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">LedgerAI</h2>
+</div>
+<nav class="hidden md:flex items-center gap-1">
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5" href="#">Dashboard</a>
+<a class="px-4 py-2 text-sm font-medium text-white bg-white/10 rounded-lg" href="#">Transactions</a>
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5" href="#">Clients</a>
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="bg-background-dark border-border-dark text-sm rounded-lg pl-10 pr-4 py-2 w-64 text-white focus:ring-1 focus:ring-primary focus:border-primary placeholder-slate-500" placeholder="Search transactions..." type="text"/>
+</div>
+<button class="size-9 rounded-full bg-surface-hover flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="size-9 rounded-full bg-gradient-to-tr from-primary to-purple-500 p-[2px]">
+<img alt="User Profile" class="rounded-full h-full w-full object-cover border-2 border-surface-dark" data-alt="Portrait of a professional woman with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxrrzd6uEKX3eWV291Ik-kuJoMQn2YnUVALeEJiwvcHL4FlaK2izHYvbyYI6VfTmxfEvC3MuSz9HOiXQ8rsWmloGOcNgJsN7gdglNhjvW4vsWOnaknCcsEDtCVshyK7wleooR0iVv4lT2mt8tWjfWTBMobMv3YZey-6aCbGM4HMxoJ0VgS8zzPKdMptnRJU_mPsB4EvHewEEpgBmp04jk1c21aSJjD6rKdmh9CUOSBL2HGbViRrUJ4msjoOJ3nxStQuDjA5NwInbk"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Split View -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Pane: Transaction Table (60%) -->
+<div class="flex-1 lg:flex-[0.6] flex flex-col min-w-0 border-r border-border-dark bg-background-dark/50 relative">
+<!-- Toolbar -->
+<div class="px-6 py-5 flex items-center justify-between flex-none">
+<div>
+<h1 class="text-xl font-bold text-white tracking-tight">Uncategorized Transactions</h1>
+<p class="text-slate-400 text-sm mt-1">Acme Corp • 42 pending review</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-hover border border-border-dark text-slate-300 text-sm hover:text-white hover:border-slate-500 transition-all">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-hover border border-border-dark text-slate-300 text-sm hover:text-white hover:border-slate-500 transition-all">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                        Sort
+                    </button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="px-6 pb-2 grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-border-dark/50 select-none">
+<div class="pl-2">Date</div>
+<div>Payee</div>
+<div class="text-right pr-4">Amount</div>
+<div>Category</div>
+<div>Confidence</div>
+</div>
+<!-- Table Body (Scrollable) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-6 py-2 space-y-1">
+<!-- Row 1: Active -->
+<div class="group relative grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 items-center p-3 rounded-lg bg-primary/10 border border-primary/40 cursor-pointer transition-all">
+<div class="pl-2 text-slate-300 text-sm font-medium">Oct 24</div>
+<div class="text-white text-sm font-medium flex items-center gap-2">
+<div class="size-6 rounded bg-white text-black flex items-center justify-center text-[10px] font-bold">U</div>
+                        Uber Technologies
+                    </div>
+<div class="text-right pr-4 text-slate-300 text-sm font-mono">$45.20</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-surface-dark text-slate-300 border border-border-dark">
+                            Travel &amp; Meals
+                        </span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-400"></span>
+                            High (92%)
+                        </span>
+</div>
+<!-- Selection Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-lg"></div>
+</div>
+<!-- Row 2 -->
+<div class="group grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 items-center p-3 rounded-lg hover:bg-surface-hover border border-transparent hover:border-border-dark cursor-pointer transition-all">
+<div class="pl-2 text-slate-400 text-sm">Oct 23</div>
+<div class="text-slate-200 text-sm flex items-center gap-2">
+<div class="size-6 rounded bg-gradient-to-br from-orange-400 to-yellow-600 text-white flex items-center justify-center text-[10px] font-bold">A</div>
+                        Amazon AWS
+                    </div>
+<div class="text-right pr-4 text-slate-400 text-sm font-mono">$120.00</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-surface-dark text-slate-400 border border-border-dark group-hover:border-slate-600">
+                            Software Subs
+                        </span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-400"></span>
+                            High (88%)
+                        </span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="group grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 items-center p-3 rounded-lg hover:bg-surface-hover border border-transparent hover:border-border-dark cursor-pointer transition-all">
+<div class="pl-2 text-slate-400 text-sm">Oct 21</div>
+<div class="text-slate-200 text-sm flex items-center gap-2">
+<div class="size-6 rounded bg-slate-700 text-slate-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">question_mark</span>
+</div>
+                        Unknown Vendor #442
+                    </div>
+<div class="text-right pr-4 text-slate-400 text-sm font-mono">$1,200.00</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-surface-dark text-amber-500 border border-amber-900/30">
+                            Uncategorized
+                        </span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+<span class="size-1.5 rounded-full bg-amber-400"></span>
+                            Low (15%)
+                        </span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="group grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 items-center p-3 rounded-lg hover:bg-surface-hover border border-transparent hover:border-border-dark cursor-pointer transition-all">
+<div class="pl-2 text-slate-400 text-sm">Oct 20</div>
+<div class="text-slate-200 text-sm flex items-center gap-2">
+<div class="size-6 rounded bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">D</div>
+                        Delta Airlines
+                    </div>
+<div class="text-right pr-4 text-slate-400 text-sm font-mono">$450.00</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-surface-dark text-slate-400 border border-border-dark group-hover:border-slate-600">
+                            Travel
+                        </span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-400"></span>
+                            Med (65%)
+                        </span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="group grid grid-cols-[1fr_1.5fr_1fr_1.2fr_1fr] gap-4 items-center p-3 rounded-lg hover:bg-surface-hover border border-transparent hover:border-border-dark cursor-pointer transition-all">
+<div class="pl-2 text-slate-400 text-sm">Oct 19</div>
+<div class="text-slate-200 text-sm flex items-center gap-2">
+<div class="size-6 rounded bg-black text-white flex items-center justify-center text-[10px] font-bold">W</div>
+                        WeWork
+                    </div>
+<div class="text-right pr-4 text-slate-400 text-sm font-mono">$2,500.00</div>
+<div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-surface-dark text-slate-400 border border-border-dark group-hover:border-slate-600">
+                            Rent
+                        </span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-400"></span>
+                            High (95%)
+                        </span>
+</div>
+</div>
+</div>
+<!-- Bottom Stats -->
+<div class="px-6 py-4 border-t border-border-dark bg-surface-dark/50 flex items-center justify-between text-xs text-slate-500">
+<span>Showing 1-15 of 42 transactions</span>
+<div class="flex gap-2">
+<button class="p-1 rounded hover:bg-surface-hover text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-hover text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Right Pane: AI Inspector (40%) -->
+<div class="hidden lg:flex lg:flex-[0.4] flex-col bg-surface-dark/30 backdrop-blur-sm p-8 border-l border-border-dark/50 shadow-2xl z-10">
+<!-- Sticky Container -->
+<div class="sticky top-0 h-full flex flex-col gap-6">
+<!-- Header -->
+<div class="flex items-start justify-between">
+<div>
+<div class="text-xs font-semibold text-primary uppercase tracking-widest mb-1">AI Reasoning</div>
+<h2 class="text-2xl font-bold text-white">Travel &amp; Meals</h2>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Glass Card: Confidence & Main Insight -->
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden group">
+<!-- Background abstract blob -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700"></div>
+<div class="flex items-center gap-6 mb-6 relative z-10">
+<!-- Circular Progress (Simulated with SVG) -->
+<div class="relative size-20 flex-none">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-emerald-500 drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-lg font-bold text-white">92%</span>
+</div>
+</div>
+<div>
+<div class="text-sm text-slate-400">Confidence Score</div>
+<div class="text-emerald-400 font-medium text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                High Certainty
+                            </div>
+</div>
+</div>
+<div class="space-y-3 relative z-10">
+<div class="flex gap-3 items-start p-3 rounded-xl bg-background-dark/40 border border-white/5">
+<div class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</div>
+<div>
+<h4 class="text-sm font-medium text-slate-200">Historical Pattern</h4>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">Payee "Uber Technologies" has been categorized as 'Travel &amp; Meals' 24 times in the last 6 months.</p>
+</div>
+</div>
+<div class="flex gap-3 items-start p-3 rounded-xl bg-background-dark/40 border border-white/5">
+<div class="mt-0.5 text-blue-400">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</div>
+<div>
+<h4 class="text-sm font-medium text-slate-200">Amount Analysis</h4>
+<p class="text-xs text-slate-400 mt-0.5 leading-relaxed">$45.20 is within the standard deviation ($15 - $80) for this vendor.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Info -->
+<div class="space-y-4">
+<h3 class="text-sm font-medium text-slate-300 uppercase tracking-wide">Transaction Details</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark">
+<div class="text-xs text-slate-500 mb-1">Vendor</div>
+<div class="text-white font-medium truncate">Uber Technologies</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark">
+<div class="text-xs text-slate-500 mb-1">Date</div>
+<div class="text-white font-medium">Oct 24, 2023</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-dark border border-border-dark col-span-2">
+<div class="text-xs text-slate-500 mb-1">Bank Description</div>
+<div class="text-white font-mono text-xs">UBER *TRIP 28442 SAN FRANCISCO CA</div>
+</div>
+</div>
+</div>
+<div class="flex-1"></div>
+<!-- Actions Footer -->
+<div class="pt-6 border-t border-border-dark/50 grid gap-3">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-1 px-1">
+<span>Press <span class="font-mono bg-surface-hover px-1 rounded text-slate-300">A</span> to approve</span>
+<span>Press <span class="font-mono bg-surface-hover px-1 rounded text-slate-300">E</span> to edit</span>
+</div>
+<div class="grid grid-cols-[1fr_auto] gap-3">
+<button class="h-12 bg-primary hover:bg-blue-600 text-white font-medium rounded-xl shadow-glow transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">check</span>
+                            Approve Category
+                        </button>
+<button class="h-12 w-12 bg-surface-hover border border-border-dark hover:bg-surface-hover/80 hover:border-slate-500 text-white rounded-xl flex items-center justify-center transition-all" title="Edit Category">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<button class="text-center text-xs text-slate-500 hover:text-primary transition-colors mt-2">
+                        Mark as Flagged for Review
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
